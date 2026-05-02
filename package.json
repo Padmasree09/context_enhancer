@@ -1,0 +1,59 @@
+{
+  "name": "context-enhancer",
+  "displayName": "Context Enhancer",
+  "description": "Pre-retrieves semantic code context and injects it into Copilot Chat for faster, smarter responses",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.111.0"
+  },
+  "categories": [
+    "AI",
+    "Chat"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "context-enhancer.ctx",
+        "fullName": "Context Enhancer",
+        "name": "ctx",
+        "description": "Retrieves relevant code chunks and answers with full semantic context",
+        "isSticky": true
+      }
+    ],
+    "commands": [
+      {
+        "command": "context-enhancer.indexWorkspace",
+        "title": "Context Enhancer: Index Workspace"
+      },
+      {
+        "command": "context-enhancer.clearIndex",
+        "title": "Context Enhancer: Clear Index"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.110.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1"
+  },
+  "dependencies": {
+    "web-tree-sitter": "^0.26.8"
+  }
+}
